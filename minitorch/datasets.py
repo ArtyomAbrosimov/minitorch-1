@@ -5,6 +5,9 @@ from typing import List, Tuple
 
 
 def make_pts(N: int) -> List[Tuple[float, float]]:
+    """
+    Генерирует N случайных двумерных точек в единичном квадрате
+    """
     X = []
     for i in range(N):
         x_1 = random.random()
@@ -15,12 +18,21 @@ def make_pts(N: int) -> List[Tuple[float, float]]:
 
 @dataclass
 class Graph:
+    """
+    Структура для хранения датасета:
+    N - количество точек
+    X - координаты точек
+    y - метки классов
+    """
     N: int
     X: List[Tuple[float, float]]
     y: List[int]
 
 
 def simple(N: int) -> Graph:
+    """
+    Генерирует N случайных точек с разделением на два класса по прямой x_1 = 0.5
+    """
     X = make_pts(N)
     y = []
     for x_1, x_2 in X:
@@ -30,6 +42,9 @@ def simple(N: int) -> Graph:
 
 
 def diag(N: int) -> Graph:
+    """
+    Генерирует N случайных точек с разделением на два класса по прямой x_1 + x_2 = 0.5
+    """
     X = make_pts(N)
     y = []
     for x_1, x_2 in X:
@@ -39,6 +54,9 @@ def diag(N: int) -> Graph:
 
 
 def split(N: int) -> Graph:
+    """
+    Генерирует N случайных точек с разделением на границы (x_1 < 0.2 и x_1 > 0.8) и центр
+    """
     X = make_pts(N)
     y = []
     for x_1, x_2 in X:
@@ -48,6 +66,9 @@ def split(N: int) -> Graph:
 
 
 def xor(N: int) -> Graph:
+    """
+    Генерирует N случайных точек с разделением на 2 и 4 квадранты (класс 1) и 1 и 3 квадранты (класс 0)
+    """
     X = make_pts(N)
     y = []
     for x_1, x_2 in X:
@@ -57,6 +78,9 @@ def xor(N: int) -> Graph:
 
 
 def circle(N: int) -> Graph:
+    """
+    Генерирует N случайных точек с выделением круга с центром (0.5, 0.5) и радиусом sqrt(0.1)
+    """
     X = make_pts(N)
     y = []
     for x_1, x_2 in X:
@@ -67,6 +91,10 @@ def circle(N: int) -> Graph:
 
 
 def spiral(N: int) -> Graph:
+    """
+    Генерирует N случайных точек с разделением на два класса по прямой x_1 = 0.5
+    """
+
     def x(t: float) -> float:
         return t * math.cos(t) / 20.0
 
